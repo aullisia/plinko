@@ -1,6 +1,21 @@
-[gd_scene load_steps=2 format=3 uid="uid://dtognboxjjeo7"]
+[gd_scene load_steps=5 format=3 uid="uid://dtognboxjjeo7"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_0mp5v"]
+[ext_resource type="PackedScene" uid="uid://c4mpw7e4eeqkr" path="res://scenes/ball.tscn" id="2_w0da2"]
+[ext_resource type="PackedScene" uid="uid://4cbr3fi71hnm" path="res://scenes/bump.tscn" id="3_8b4ri"]
+[ext_resource type="Script" path="res://scripts/bump_manager.gd" id="4_dod4e"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_0mp5v")
+
+[node name="Bump" parent="." instance=ExtResource("3_8b4ri")]
+position = Vector2(-353, -128)
+
+[node name="Ball" parent="." instance=ExtResource("2_w0da2")]
+position = Vector2(0, -243)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="BumpManager" type="Node2D" parent="."]
+script = ExtResource("4_dod4e")
+BUMP_SCENE = ExtResource("3_8b4ri")

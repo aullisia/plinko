@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://4cbr3fi71hnm"]
+
+[ext_resource type="Texture2D" uid="uid://b2fvng82pbggj" path="res://assets/BUMP.png" id="1_etp7h"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_su2i6"]
+radius = 16.0
+
+[node name="Bump" type="StaticBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_su2i6")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_etp7h")
