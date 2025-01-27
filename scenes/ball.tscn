@@ -7,6 +7,8 @@
 radius = 11.0
 
 [node name="Ball" type="RigidBody2D" node_paths=PackedStringArray("STUCK_TIMER")]
+z_index = 1
+collision_layer = 2
 script = ExtResource("1_387xo")
 STUCK_TIMER = NodePath("StuckTimer")
 
@@ -17,4 +19,5 @@ texture = ExtResource("1_2xk6r")
 shape = SubResource("CircleShape2D_0xd5v")
 
 [node name="StuckTimer" type="Timer" parent="."]
-wait_time = 0.5
+wait_time = 0.1
+one_shot = true

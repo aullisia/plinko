@@ -1,21 +1,51 @@
-[gd_scene load_steps=5 format=3 uid="uid://dtognboxjjeo7"]
+[gd_scene load_steps=8 format=3 uid="uid://dtognboxjjeo7"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_0mp5v"]
 [ext_resource type="PackedScene" uid="uid://c4mpw7e4eeqkr" path="res://scenes/ball.tscn" id="2_w0da2"]
 [ext_resource type="PackedScene" uid="uid://4cbr3fi71hnm" path="res://scenes/bump.tscn" id="3_8b4ri"]
 [ext_resource type="Script" path="res://scripts/bump_manager.gd" id="4_dod4e"]
+[ext_resource type="Script" path="res://scripts/ball_manager.gd" id="5_d1m5g"]
+[ext_resource type="PackedScene" uid="uid://bvpt25b42nqj1" path="res://scenes/score_area.tscn" id="6_f6fgo"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_1474v"]
+distance = 1.0
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_0mp5v")
-
-[node name="Bump" parent="." instance=ExtResource("3_8b4ri")]
-position = Vector2(-353, -128)
-
-[node name="Ball" parent="." instance=ExtResource("2_w0da2")]
-position = Vector2(0, -243)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="BumpManager" type="Node2D" parent="."]
 script = ExtResource("4_dod4e")
 BUMP_SCENE = ExtResource("3_8b4ri")
+
+[node name="BallManager" type="Node2D" parent="."]
+script = ExtResource("5_d1m5g")
+BALL_SCENE = ExtResource("2_w0da2")
+
+[node name="ScoreManager" type="Node2D" parent="."]
+
+[node name="Floor" type="StaticBody2D" parent="ScoreManager"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ScoreManager/Floor"]
+position = Vector2(0, 326)
+shape = SubResource("WorldBoundaryShape2D_1474v")
+
+[node name="Areas" type="Node2D" parent="ScoreManager"]
+
+[node name="ScoreArea" parent="ScoreManager/Areas" instance=ExtResource("6_f6fgo")]
+position = Vector2(1, 303)
+
+[node name="ScoreArea2" parent="ScoreManager/Areas" instance=ExtResource("6_f6fgo")]
+position = Vector2(43, 303)
+multiplier = 2
+
+[node name="UI" type="Node2D" parent="."]
+
+[node name="Label" type="Label" parent="UI"]
+offset_left = -533.0
+offset_top = -296.0
+offset_right = -355.0
+offset_bottom = -245.0
+theme_override_font_sizes/font_size = 50
+text = "Money: 10"
